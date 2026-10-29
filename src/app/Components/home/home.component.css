@@ -1,0 +1,55 @@
+.home-container {
+  min-height: 100vh;
+  background: #f9fafb;
+}
+
+.home-header {
+  background: linear-gradient(135deg, #6b46c1 0%, #8b5cf6 100%) !important;
+  color: white !important;
+  box-shadow: 0 2px 8px rgba(107, 70, 193, 0.3) !important;
+  padding: 0 2rem !important;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.logout-btn {
+  color: white !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  border-radius: 6px !important;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.home-content {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.welcome-card {
+  border-radius: 12px !important;
+  padding: 1.5rem !important;
+  border-left: 4px solid #8b5cf6 !important;
+}
+
+.card-avatar {
+  background: #ede9fe;
+  color: #7c3aed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+

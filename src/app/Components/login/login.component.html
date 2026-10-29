@@ -1,0 +1,98 @@
+<div class="login-wrapper">
+  <!-- Fondo con degradado y orbes flotantes en tonalidades violeta/morado -->
+  <div class="background-decor">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <mat-card class="login-card" appearance="raised">
+    <div class="brand-header">
+      <div class="brand-icon-wrapper">
+        <mat-icon class="brand-icon">shield</mat-icon>
+      </div>
+      <h1 class="brand-title">Planillas Gemula</h1>
+      <p class="brand-subtitle">Portal de Acceso Corporativo</p>
+    </div>
+
+    <mat-card-content>
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="login-form">
+        <!-- Campo Usuario -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nombre de Usuario</mat-label>
+          <input
+            matInput
+            type="text"
+            id="username"
+            name="username"
+            [(ngModel)]="credentials.username"
+            placeholder="Ej: admin"
+            required
+            autocomplete="username"
+            [disabled]="loading"
+          />
+          <mat-icon matPrefix class="field-icon">person</mat-icon>
+        </mat-form-field>
+
+        <!-- Campo Contraseña -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Contraseña</mat-label>
+          <input
+            matInput
+            [type]="hidePassword ? 'password' : 'text'"
+            id="password"
+            name="password"
+            [(ngModel)]="credentials.password"
+            placeholder="Ingrese su contraseña"
+            required
+            autocomplete="current-password"
+            [disabled]="loading"
+          />
+          <mat-icon matPrefix class="field-icon">lock</mat-icon>
+          <button
+            mat-icon-button
+            matSuffix
+            type="button"
+            (click)="hidePassword = !hidePassword"
+            [attr.aria-label]="'Ocultar contraseña'"
+            tabindex="-1"
+          >
+            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <!-- Mensaje de Error -->
+        <div class="alert-box error" *ngIf="errorMessage">
+          <mat-icon class="alert-icon">error_outline</mat-icon>
+          <span>{{ errorMessage }}</span>
+        </div>
+
+        <!-- Botón de Ingreso con Material Design -->
+        <div class="actions">
+          <button
+            mat-flat-button
+            type="submit"
+            class="submit-button"
+            [disabled]="loading || !credentials.username || !credentials.password"
+          >
+            <span *ngIf="!loading" class="button-content">
+              <span>Iniciar Sesión</span>
+              <mat-icon class="arrow-icon">arrow_forward</mat-icon>
+            </span>
+            <div *ngIf="loading" class="loading-content">
+              <mat-spinner diameter="22"></mat-spinner>
+              <span>Autenticando...</span>
+            </div>
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+
+    <div class="login-footer">
+      <div class="role-hint">
+        <mat-icon class="hint-icon">lock_person</mat-icon>
+        <span>Redirección inteligente según rol del backend (Admin / RRHH / Empleado)</span>
+      </div>
+    </div>
+  </mat-card>
+</div>

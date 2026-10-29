@@ -1,0 +1,288 @@
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 10% 20%, #2e0854 0%, #17032d 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem;
+}
+
+/* Orbes decorativos flotantes */
+.background-decor {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.45;
+  animation: floatOrb 12s ease-in-out infinite alternate;
+}
+
+.orb-1 {
+  width: 450px;
+  height: 450px;
+  background: #7e22ce;
+  top: -100px;
+  left: -80px;
+}
+
+.orb-2 {
+  width: 400px;
+  height: 400px;
+  background: #9333ea;
+  bottom: -80px;
+  right: -60px;
+  animation-delay: -4s;
+}
+
+.orb-3 {
+  width: 250px;
+  height: 250px;
+  background: #c084fc;
+  top: 40%;
+  right: 25%;
+  opacity: 0.25;
+  animation-delay: -8s;
+}
+
+@keyframes floatOrb {
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+  100% {
+    transform: translateY(40px) scale(1.08);
+  }
+}
+
+/* Tarjeta Material Design */
+.login-card {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.96) !important;
+  backdrop-filter: blur(16px);
+  border-radius: 20px !important;
+  box-shadow: 0 25px 60px -15px rgba(46, 8, 84, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.2) !important;
+  padding: 2.2rem 2rem 1.8rem !important;
+  animation: cardAppear 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes cardAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(25px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Cabecera / Marca */
+.brand-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.brand-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #7e22ce 0%, #a855f7 100%);
+  box-shadow: 0 10px 25px rgba(126, 34, 206, 0.4);
+  margin-bottom: 1rem;
+}
+
+.brand-icon {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+  color: white;
+}
+
+.brand-title {
+  color: #2e0854;
+  font-size: 1.65rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.brand-subtitle {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin: 0.35rem 0 0 0;
+  font-weight: 400;
+}
+
+/* Formulario */
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.field-icon {
+  color: #7e22ce;
+  margin-right: 8px;
+}
+
+/* Personalización de Angular Material Form Field */
+::ng-deep .login-form .mat-mdc-text-field-wrapper {
+  border-radius: 12px !important;
+}
+
+::ng-deep .login-form .mat-mdc-form-field-focus-overlay {
+  background-color: rgba(147, 51, 234, 0.04) !important;
+}
+
+::ng-deep .login-form .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,
+::ng-deep .login-form .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,
+::ng-deep .login-form .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing {
+  border-color: #7e22ce !important;
+  border-width: 2px !important;
+}
+
+::ng-deep .login-form .mdc-text-field--focused .mdc-floating-label {
+  color: #7e22ce !important;
+}
+
+/* Caja de alerta para errores */
+.alert-box {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  animation: shake 0.35s ease-in-out;
+}
+
+.alert-box.error {
+  background-color: #fdf2f8;
+  color: #9d174d;
+  border: 1px solid #fbcfe8;
+}
+
+.alert-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  color: #be185d;
+  flex-shrink: 0;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Botón de envío */
+.actions {
+  margin-top: 0.75rem;
+}
+
+.submit-button {
+  width: 100%;
+  height: 50px !important;
+  border-radius: 12px !important;
+  background: linear-gradient(135deg, #7e22ce 0%, #9333ea 50%, #a855f7 100%) !important;
+  color: white !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.3px;
+  box-shadow: 0 10px 25px -5px rgba(126, 34, 206, 0.45) !important;
+  transition: transform 0.2s, box-shadow 0.2s !important;
+}
+
+.submit-button:hover:not([disabled]) {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -5px rgba(126, 34, 206, 0.6) !important;
+}
+
+.submit-button:active:not([disabled]) {
+  transform: translateY(0);
+}
+
+.submit-button[disabled] {
+  background: #e9d5ff !important;
+  color: #a855f7 !important;
+  box-shadow: none !important;
+}
+
+.button-content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.arrow-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s;
+}
+
+.submit-button:hover:not([disabled]) .arrow-icon {
+  transform: translateX(4px);
+}
+
+.loading-content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+::ng-deep .loading-content .mat-mdc-progress-spinner circle {
+  stroke: white !important;
+}
+
+/* Pie de tarjeta */
+.login-footer {
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #f3e8ff;
+}
+
+.role-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6b21a8;
+  font-size: 0.775rem;
+  background: #faf5ff;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: 1px dashed #d8b4fe;
+}
+
+.hint-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  color: #7e22ce;
+  flex-shrink: 0;
+}

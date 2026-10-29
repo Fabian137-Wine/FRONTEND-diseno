@@ -1,0 +1,29 @@
+<div class="home-container">
+  <mat-toolbar class="home-header">
+    <div class="header-brand">
+      <mat-icon>domain</mat-icon>
+      <span>Sistema de Planillas Gemula</span>
+    </div>
+    <span class="spacer"></span>
+    <button mat-button class="logout-btn" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Cerrar Sesión</span>
+    </button>
+  </mat-toolbar>
+
+  <main class="home-content">
+    <mat-card class="welcome-card" appearance="raised">
+      <mat-card-header>
+        <div mat-card-avatar class="card-avatar">
+          <mat-icon>account_circle</mat-icon>
+        </div>
+        <mat-card-title>Bienvenido, {{ username }}</mat-card-title>
+        <mat-card-subtitle>Sesión iniciada con éxito</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Has ingresado al portal corporativo de Planillas Gemula.</p>
+      </mat-card-content>
+    </mat-card>
+  </main>
+</div>
+
