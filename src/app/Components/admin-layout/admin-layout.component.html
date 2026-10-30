@@ -1,0 +1,52 @@
+<div class="layout-container">
+  <mat-toolbar class="top-toolbar">
+    <div class="toolbar-brand">
+      <div class="brand-badge">
+        <mat-icon>admin_panel_settings</mat-icon>
+      </div>
+      <div class="brand-text">
+        <span class="app-title">Planillas Gemula</span>
+        <span class="portal-badge">Panel Administrador</span>
+      </div>
+    </div>
+
+    <span class="toolbar-spacer"></span>
+
+    <div class="user-profile">
+      <div class="user-avatar">
+        <mat-icon>person</mat-icon>
+      </div>
+      <div class="user-details">
+        <span class="user-name">{{ username }}</span>
+        <span class="user-role-tag">{{ roles.join(', ') }}</span>
+      </div>
+      <button mat-flat-button class="logout-btn" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Salir</span>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav mode="side" opened class="sidenav">
+      <div class="sidenav-header">
+        <mat-icon>menu</mat-icon>
+        <span>Menú de Gestión</span>
+      </div>
+      <mat-nav-list class="nav-list">
+        <a mat-list-item 
+           *ngFor="let item of menuItems" 
+           [routerLink]="item.route" 
+           routerLinkActive="active-link"
+           class="nav-item">
+          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+          <span matListItemTitle>{{ item.label }}</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="main-content">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

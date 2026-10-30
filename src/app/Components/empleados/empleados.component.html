@@ -1,0 +1,157 @@
+<div class="empleados-container">
+  <div class="page-header">
+    <div class="header-content">
+      <div class="header-title">
+        <mat-icon>badge</mat-icon>
+        <div>
+          <h1>Empleados</h1>
+          <p>Gestión de empleados, filtrado por departamento o rol</p>
+        </div>
+      </div>
+      <button mat-flat-button class="add-btn">
+        <mat-icon>person_add</mat-icon>
+        <span>Nuevo Empleado</span>
+      </button>
+    </div>
+  </div>
+
+  <mat-card class="filtros-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon>filter_list</mat-icon>
+        <span>Filtros de Búsqueda</span>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="filtros-grid">
+        <mat-form-field appearance="outline" class="filtro-item">
+          <mat-label>Buscar</mat-label>
+          <input matInput [(ngModel)]="filtroBusqueda" (keyup)="aplicarFiltros()" placeholder="Nombre, apellido, DNI o correo">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="filtro-item">
+          <mat-label>Departamento</mat-label>
+          <mat-select [(ngModel)]="filtroDepartamento" (selectionChange)="aplicarFiltros()">
+            <mat-option [value]="null">Todos los departamentos</mat-option>
+            <mat-option *ngFor="let dept of departamentos" [value]="dept.id">
+              {{ dept.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="filtro-item">
+          <mat-label>Estado</mat-label>
+          <mat-select [(ngModel)]="filtroEstado" (selectionChange)="aplicarFiltros()">
+            <mat-option value="todos">Todos</mat-option>
+            <mat-option value="activo">Activos</mat-option>
+            <mat-option value="inactivo">Inactivos</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-stroked-button class="limpiar-btn" (click)="limpiarFiltros()">
+          <mat-icon>clear</mat-icon>
+          <span>Limpiar Filtros</span>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="tabla-card">
+    <mat-card-header>
+      <mat-card-title>
+        <span>Listado de Empleados</span>
+        <mat-chip class="count-chip">{{ empleadosFiltrados.length }} registros</mat-chip>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="tabla-container">
+        <table mat-table [dataSource]="empleadosFiltrados" class="empleados-table">
+          <!-- ID Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let emp">{{ emp.id }}</td>
+          </ng-container>
+
+          <!-- Nombres Column -->
+          <ng-container matColumnDef="nombres">
+            <th mat-header-cell *matHeaderCellDef>Nombres</th>
+            <td mat-cell *matCellDef="let emp">{{ emp.nombres }}</td>
+          </ng-container>
+
+          <!-- Apellidos Column -->
+          <ng-container matColumnDef="apellidos">
+            <th mat-header-cell *matHeaderCellDef>Apellidos</th>
+            <td mat-cell *matCellDef="let emp">{{ emp.apellidos }}</td>
+          </ng-container>
+
+          <!-- DNI Column -->
+          <ng-container matColumnDef="dni">
+            <th mat-header-cell *matHeaderCellDef>DNI</th>
+            <td mat-cell *matCellDef="let emp">{{ emp.dni }}</td>
+          </ng-container>
+
+          <!-- Correo Column -->
+          <ng-container matColumnDef="correo">
+            <th mat-header-cell *matHeaderCellDef>Correo</th>
+            <td mat-cell *matCellDef="let emp">{{ emp.correo }}</td>
+          </ng-container>
+
+          <!-- Departamento Column -->
+          <ng-container matColumnDef="departamento">
+            <th mat-header-cell *matHeaderCellDef>Departamento</th>
+            <td mat-cell *matCellDef="let emp">
+              <mat-chip class="dept-chip">{{ obtenerNombreDepartamento(emp.departamentoId) }}</mat-chip>
+            </td>
+          </ng-container>
+
+          <!-- Sueldo Column -->
+          <ng-container matColumnDef="sueldoBase">
+            <th mat-header-cell *matHeaderCellDef>Sueldo Base</th>
+            <td mat-cell *matCellDef="let emp">S/ {{ emp.sueldoBase | number:'1.2-2' }}</td>
+          </ng-container>
+
+          <!-- Estado Column -->
+          <ng-container matColumnDef="activo">
+            <th mat-header-cell *matHeaderCellDef>Estado</th>
+            <td mat-cell *matCellDef="let emp">
+              <mat-chip [class]="emp.activo ? 'activo-chip' : 'inactivo-chip'">
+                {{ emp.activo ? 'Activo' : 'Inactivo' }}
+              </mat-chip>
+            </td>
+          </ng-container>
+
+          <!-- Acciones Column -->
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let emp">
+              <button mat-icon-button color="primary" (click)="verDetalle(emp)" title="Ver detalle">
+                <mat-icon>visibility</mat-icon>
+              </button>
+              <button mat-icon-button color="accent" (click)="editarEmpleado(emp)" title="Editar">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <div class="sin-datos" *ngIf="empleadosFiltrados.length === 0 && !loading">
+          <mat-icon>people_outline</mat-icon>
+          <p>No se encontraron empleados con los filtros aplicados</p>
+        </div>
+      </div>
+
+      <mat-paginator 
+        [length]="totalEmpleados"
+        [pageSize]="pageSize"
+        [pageIndex]="pageIndex"
+        [pageSizeOptions]="[5, 10, 25, 50]"
+        (page)="cambiarPagina($event)"
+        showFirstLastButtons>
+      </mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>

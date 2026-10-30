@@ -1,0 +1,193 @@
+.empleados-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 1.5rem;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-title mat-icon {
+  font-size: 36px;
+  width: 36px;
+  height: 36px;
+  color: #6b46c1;
+}
+
+.header-title h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.header-title p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.add-btn {
+  background: linear-gradient(135deg, #6b46c1 0%, #8b5cf6 100%) !important;
+  color: white !important;
+  padding: 0 1.5rem !important;
+  height: 44px;
+}
+
+.filtros-card {
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.filtros-card mat-card-header {
+  padding: 1rem 1.5rem;
+  background: linear-gradient(90deg, rgba(139, 92, 246, 0.08) 0%, transparent 100%);
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.filtros-card mat-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6b46c1;
+  margin: 0;
+}
+
+.filtros-card mat-card-content {
+  padding: 1.5rem !important;
+}
+
+.filtros-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: 1rem;
+  align-items: center;
+}
+
+.filtro-item {
+  width: 100%;
+}
+
+.limpiar-btn {
+  height: 56px;
+  color: #6b46c1 !important;
+  border-color: #8b5cf6 !important;
+}
+
+.tabla-card {
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.tabla-card mat-card-header {
+  padding: 1rem 1.5rem;
+  background: linear-gradient(90deg, rgba(139, 92, 246, 0.08) 0%, transparent 100%);
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.tabla-card mat-card-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6b46c1;
+  margin: 0;
+}
+
+.count-chip {
+  background: #e0e7ff !important;
+  color: #4338ca !important;
+  font-weight: 600;
+}
+
+.tabla-card mat-card-content {
+  padding: 0 !important;
+}
+
+.tabla-container {
+  overflow-x: auto;
+}
+
+.empleados-table {
+  width: 100%;
+}
+
+.empleados-table th {
+  background: #f9fafb;
+  color: #374151;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 12px 16px;
+}
+
+.empleados-table td {
+  padding: 12px 16px;
+  color: #1f2937;
+  font-size: 0.875rem;
+}
+
+.empleados-table tr:hover {
+  background: #f9fafb;
+}
+
+.dept-chip {
+  background: #f3e8ff !important;
+  color: #6b46c1 !important;
+  font-size: 0.75rem !important;
+  height: 24px !important;
+}
+
+.activo-chip {
+  background: #dcfce7 !important;
+  color: #16a34a !important;
+  font-size: 0.75rem !important;
+  height: 24px !important;
+}
+
+.inactivo-chip {
+  background: #fee2e2 !important;
+  color: #dc2626 !important;
+  font-size: 0.75rem !important;
+  height: 24px !important;
+}
+
+.sin-datos {
+  text-align: center;
+  padding: 3rem;
+  color: #9ca3af;
+}
+
+.sin-datos mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 0.5rem;
+}
+
+.sin-datos p {
+  margin: 0;
+}
+
+@media (max-width: 968px) {
+  .filtros-grid {
+    grid-template-columns: 1fr;
+  }
+}
